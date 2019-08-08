@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="container" align="center">
+    <h2>New User</h2>
+    <form method="post">
+    {% csrf_token %}
+
+    {% for field in form.visible_fields %}
+    <div class="row">
+        <div class="col"><span class="float-right">{{ field.label_tag }}</span></div>
+        <div class="col"><span class="float-left">{{ field }}</span></div>
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success">Sign up</button>
+    </form>
+
+    <div class="m-3">
+        {% for field in form.visible_fields %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            {{ error|escape }}
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
