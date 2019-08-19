@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}The Team{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 align="center">The Team</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">CEC</th>
+                <th scope="col">Coverage</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in profiles %}
+            <tr>
+                <td>{{ profile.name }}</td>
+                <td>{{ profile.cec }}</td>
+                <td>{{ profile.get_team_display }} - {{ profile.get_region_display }}</td>
+                <td>
+                    <button type="button" class="btn btn-default" style="background:none">
+                        <a href="/profiles/{{ profile.id }}">
+                            <span name="view_icon" class="far fa-eye" style="color:#000000;"></span>
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

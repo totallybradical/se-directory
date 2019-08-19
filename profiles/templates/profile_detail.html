@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - {{ profile.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1 align="center">{{ profile.name }}</h1>
+    <h3 align="center">{{ profile.get_team_display }} - {{ profile.get_region_display }}</h3></p>
+
+    <div align="center" class="container">
+        <div class="row align-items-center">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <img src="/static/assets/strength_{{ profile.primary_strength.lower }}.gif"><br><br>
+                {{ profile.get_primary_strength_display }}
+            </div>
+            <div class="col-md-4">
+                <img class="profile_pic" src="/static/assets/{{ profile.cec.lower }}.jpg" height="252" width="189">
+            </div>
+            <div class="col-md-2">
+                <img src="/static/assets/strength_{{ profile.secondary_strength.lower }}.gif"><br><br>
+                {{ profile.get_secondary_strength_display }}
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div></p>
+
+    <div align="center" class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <table class="table table-borderless">
+                        {% for factoid in factoids %}
+                        <tr>
+                            <td>{{ factoid.text }}</td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <p align="center"><a href="javascript:history.back()"><span id="back-arrow" class="fas fa-arrow-alt-circle-left fa-2x" style="color:#000000;"></span></a></p>
+</div>
+{% endblock %}
