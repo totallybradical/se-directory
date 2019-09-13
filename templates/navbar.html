@@ -21,7 +21,7 @@
         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'edit_profile' %}">Edit Profile</a>
+                <a class="nav-link" href="{% url 'edit_profile' cec=user.username%}">Edit Profile</a>
             </li>
             <li class="nav-item"  >
                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>

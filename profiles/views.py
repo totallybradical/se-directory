@@ -14,19 +14,19 @@ def profile_list(request):
     tags = ProfileTag.objects.all()
     return render(request, 'profile_list.html', {'profiles': profiles, 'tags': tags})
 
-def profile_detail(request, id=None):
-    profile = get_object_or_404(Profile, id=id)
+def profile_detail(request, cec=None):
+    profile = Profile.objects.get(cec=cec)
     factoids = Factoid.objects.filter(profile=profile)
     return render(request, 'profile_detail.html', {'profile': profile, 'factoids': factoids})
 
-def edit_profile(request):
+def edit_profile(request, cec=None):
     profile_id = Profile.objects.get(user=request.user.id).id
     profile = get_object_or_404(Profile, id=profile_id)
     if request.method == "POST" and request.user.is_authenticated and request.user == profile.user:
         form = EditProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('profile_detail', id=profile_id)
+            return redirect('profile_detail', cec=cec)
     else:
         form = EditProfileForm(instance=profile)
     return render(request, 'edit_profile.html', {'form': form, 'profile': profile})
