@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+from profile_tags.models import ProfileTag
 from django.conf import settings
 
 
@@ -16,9 +17,10 @@ class Profile(models.Model):
         choices=TEAMS
     )
     REGIONS = [
+        ("A", "All"),
         ("C", "Central"),
-        ("S", "South"),
         ("E", "East"),
+        ("S", "South"),
         ("W", "West")
     ]
     region = models.CharField(
@@ -44,6 +46,7 @@ class Profile(models.Model):
         max_length=3,
         choices=STRENGTHS
     )
+    tags = models.ManyToManyField(ProfileTag)
 
     class Meta:
         ordering = ['name']

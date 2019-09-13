@@ -3,23 +3,48 @@
 {% block title %}The Team{% endblock %}
 
 {% block content %}
+
+{% load static %}
+
+<script src="{% static "js/filter.js" %}"></script>
+
+<p>
 <div class="container">
-    <h2 align="center">The Team</h2>
+    <h1 align="center">The Team</h2>
+    {% if profiles %}
+    <form class="form-inline justify-content-center">
+        <div class="form-group ">
+            <input id="filter-input" class="form-control " placeholder="Search" />
+        </div>
+    </form>
+    <p>
+    <div align="center">
+    {% for tag in tags %}
+    <button name="profile_tag" type="submit" class="btn sm-1" style="background-color: #{{ tag.tag_color }}; color: #FFFFFF; font-size:14px; padding: 4px 8px;">{{ tag.text }}</button>
+    {% endfor %}
+    </div>
+    <p>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">CEC</th>
                 <th scope="col">Coverage</th>
+                <th scope="col">Tags</th>
                 <th scope="col"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="team-table-body">
             {% for profile in profiles %}
-            <tr>
+            <tr class="team-table-row">
                 <td>{{ profile.name }}</td>
                 <td>{{ profile.cec }}</td>
                 <td>{{ profile.get_team_display }} - {{ profile.get_region_display }}</td>
+                <td>
+                    {% for tag in profile.tags.all %}
+                    <button name="profile_tag" type="submit" class="btn sm-1" style="background-color: #{{ tag.tag_color }}; color: #FFFFFF; font-size:14px; padding: 4px 8px;">{{ tag.text }}</button>
+                    {% endfor %}
+                </td>
                 <td>
                     <button type="button" class="btn btn-default" style="background:none">
                         <a href="/profiles/{{ profile.id }}">
@@ -31,5 +56,11 @@
             {% endfor %}
         </tbody>
     </table>
+
+    {% else %}
+
+    <div align="center" class="alert alert-info"><span class="far fa-sad-tear"></span> No team members found</div>
+
+    {% endif %}
 </div>
 {% endblock %}

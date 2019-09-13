@@ -1,14 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %}Profile - {{ profile.name }}{% endblock %}
+{% block title %}SE Fun Fact!{% endblock %}
+
+
 
 {% block content %}
 <div class="container">
 
-    <h1 align="center">{{ profile.name }}</h1>
-    <h3 align="center">{{ profile.get_team_display }} - {{ profile.get_region_display }}</h3></p>
+    <h1 align="center">SE Fun Fact!</h1>
+    <br>
+    <h3 align="center"><i>{{ factoid }}</i></h3></p>
 
-    <div align="center" class="container">
+    <script>
+        function nameToggle() {
+            var x = document.getElementById("show_name");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+    <h5 align="center">Who is it?
+        <button type="button" class="btn btn-default" style="background:none" onclick="nameToggle()">
+            <span name="view_icon" class="far fa-eye" style="color:#000000;"></span>
+        </button>
+        <br>
+        <span id="show_name" style="display:none">
+            <b><a href="/profiles/{{ factoid.profile_id }}">{{ factoid.profile }}</a></b>
+        </span>
+    </h5>
+
+    <!-- <div align="center" class="container">
         <div class="row align-items-center">
             <div class="col-md-2"></div>
             <div class="col-md-2">
@@ -30,7 +53,7 @@
     <div align="center" class="container" style="padding-bottom:10px;">
         <i>{{ factoid.text }}</i>
     </div>
-    {% endfor %}
+    {% endfor %} -->
 
     <p></p>
 
