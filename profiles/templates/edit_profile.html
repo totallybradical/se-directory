@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<h2 align="center">Edit Profile</h2>
+<!-- <h3 align="center">{{ profile.name }}</h3> -->
+<br>
+{% if request.user == profile.user %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            <form method="POST" class="post-form">{% csrf_token %}
+                {{ form.as_p }}
+                <div align="center">
+                    <button type="submit" value="Yes" class="save btn btn-success">Save</button>
+                    <p></p>
+                    <a href="{% url 'profile_detail' id=profile.id%}" <span>Cancel</span></a>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>
+<br>
+{% else %}
+<div align="center" class="m-3 alert alert-danger">
+    You don't have access to edit this profile!
+</div>
+{% endif %}
+{% endblock %}

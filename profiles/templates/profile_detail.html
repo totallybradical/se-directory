@@ -26,6 +26,16 @@
         </div>
     </div></p>
 
+    <!-- TAGS -->
+    <div align="center" class="container">
+        {% for tag in profile.tags.all %}
+            <button name="profile_tag" type="submit" class="btn sm-1" style="background-color: #{{ tag.tag_color }}; color: #FFFFFF; font-size:14px; padding: 4px 8px;">{{ tag.text }}</button>
+        {% endfor %}
+    </div>
+    
+    <br>
+
+    <!-- FACTOIDS -->
     {% for factoid in factoids %}
     <div align="center" class="container" style="padding-bottom:10px;">
         <i>{{ factoid.text }}</i>
@@ -34,6 +44,7 @@
 
     <p></p>
 
-    <p align="center"><a href="javascript:history.back()"><span id="back-arrow" class="fas fa-arrow-alt-circle-left fa-2x" style="color:#000000;"></span></a></p>
+    <!-- BACK BUTTON -->
+    <p align="center"><a href="{% url 'profile_list' %}"><span id="back-arrow" class="fas fa-arrow-alt-circle-left fa-2x" style="color:#000000;"></span></a></p>
 </div>
 {% endblock %}

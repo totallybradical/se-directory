@@ -6,4 +6,5 @@ from . import views
 urlpatterns = [
     path('', views.profile_list, name='profile_list'),
     path('<int:id>/', views.profile_detail, name='profile_detail'),
+    path('edit/', views.edit_profile, name='edit_profile'),
 ]
