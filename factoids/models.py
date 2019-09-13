@@ -6,6 +6,7 @@ from django.conf import settings
 
 # Model for a factoid (not an instance of factoid)
 class Factoid(models.Model):
+    # Map to a specific profile
     profile =  models.ForeignKey('profiles.Profile', on_delete=models.CASCADE)
     text = models.TextField()
 
