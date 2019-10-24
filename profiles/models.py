@@ -10,6 +10,7 @@ class Profile(models.Model):
     cec = models.CharField(max_length=25)
     user =  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     TEAMS = [
+        ("TEMP", "TEMP")
         ("COMM", "Commercial"),
         ("USPS", "Public Sector")
     ]
@@ -21,6 +22,7 @@ class Profile(models.Model):
         ("A", "All"),
         ("C", "Central"),
         ("E", "East"),
+        ("O", "Other"),
         ("S", "South"),
         ("W", "West")
     ]
@@ -37,7 +39,8 @@ class Profile(models.Model):
         ("PIO", "Pioneer"),
         ("PRO", "Provider"),
         ("STI", "Stimulator"),
-        ("TEA", "Teacher")
+        ("TEA", "Teacher"),
+        ("UNK", "Unknown")
     ]
     primary_strength = models.CharField(
         max_length=3,
