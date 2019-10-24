@@ -10,7 +10,7 @@ class Profile(models.Model):
     cec = models.CharField(max_length=25)
     user =  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     TEAMS = [
-        ("TEMP", "TEMP")
+        ("TEMP", "TEMP"),
         ("COMM", "Commercial"),
         ("USPS", "Public Sector")
     ]
