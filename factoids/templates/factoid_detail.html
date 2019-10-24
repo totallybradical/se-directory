@@ -9,6 +9,7 @@
 
     <h1 align="center">SE Fun Fact!</h1>
     <br>
+    {% if factoid %}
     <h3 align="center"><i>{{ factoid }}</i></h3></p>
 
     <script>
@@ -54,6 +55,12 @@
         <i>{{ factoid.text }}</i>
     </div>
     {% endfor %} -->
+
+    {% else %}
+
+    <div align="center" class="alert alert-info"><span class="far fa-sad-tear"></span> No fun facts found!</div>
+
+    {% endif %}
 
     <p></p>
 
