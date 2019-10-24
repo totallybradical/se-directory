@@ -10,10 +10,12 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = (
             'name',
+            'geo',
             'team',
             'region',
             'primary_strength',
-            'secondary_strength'
+            'secondary_strength',
+            'tags'
         )
 
 class EditProfileForm(forms.ModelForm):
@@ -21,9 +23,12 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = (
-            'name', 
+            'name',
+            'geo',
             'team',
             'region',
+            'primary_strength',
+            'secondary_strength',
             'tags'
         )
         widgets = {

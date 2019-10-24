@@ -9,6 +9,18 @@ class Profile(models.Model):
     name = models.CharField(max_length=200)
     cec = models.CharField(max_length=25)
     user =  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    GEOS = [
+        ("APJC", "APJC"),
+        ("EMEAR", "EMEAR"),
+        ("GLOBE", "Global"),
+        ("LATAM", "LATAM"),
+        ("TEMP", "TEMP"),
+        ("USCAN", "Americas")
+    ]
+    geo = models.CharField(
+        max_length=5,
+        choices=GEOS
+    )
     TEAMS = [
         ("TEMP", "TEMP"),
         ("COMM", "Commercial"),

@@ -38,7 +38,7 @@
             <tr class="team-table-row">
                 <td>{{ profile.name }}</td>
                 <td>{{ profile.cec }}</td>
-                <td>{{ profile.get_team_display }} - {{ profile.get_region_display }}</td>
+                <td>{{ profile.get_geo_display }} - {{ profile.get_team_display }} - {{ profile.get_region_display }}</td>
                 <td>
                     {% for tag in profile.tags.all %}
                     <button name="profile_tag" type="submit" class="btn sm-1" style="background-color: #{{ tag.tag_color }}; color: #FFFFFF; font-size:14px; padding: 4px 8px;">{{ tag.text }}</button>

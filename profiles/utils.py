@@ -1,6 +1,9 @@
+from profiles.models import Profile
+from django.contrib.auth.models import User
+
 def create_default_profile(cec, name):
-    user = User.objects.get(username=cec)
-    new_profile = Profile.objects.create(
+    user = django.contrib.auth.models.User.objects.get(username=cec)
+    new_profile = profiles.models.Profile.objects.create(
         name=name,
         cec=cec,
         user=user.id,

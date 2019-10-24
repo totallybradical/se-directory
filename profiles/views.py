@@ -10,7 +10,7 @@ from factoids.models import Factoid
 from django.http import JsonResponse
 
 def profile_list(request):
-    profiles = Profile.objects.order_by('name')
+    profiles = Profile.objects.exclude(geo="TEMP").exclude(team="TEMP").order_by('name')
     tags = ProfileTag.objects.all()
     return render(request, 'profile_list.html', {'profiles': profiles, 'tags': tags})
 
