@@ -4,11 +4,20 @@ from django.db import models
 from profile_tags.models import ProfileTag
 from django.conf import settings
 
+import os
+
+def profile_pic_path(instance, filename):
+    basefilename, extension = os.path.splitext(filename)
+    fullname = 'static/assets/' + instance.cec + extension
+    if os.path.exists(fullname):
+        os.remove(fullname)
+    return fullname
 
 class Profile(models.Model):
     name = models.CharField(max_length=200)
     cec = models.CharField(max_length=25)
     user =  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(upload_to=profile_pic_path, default='static/assets/blank.jpg')
     GEOS = [
         ("APJC", "APJC"),
         ("EMEAR", "EMEAR"),
@@ -72,3 +81,4 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.name
+    

@@ -23,10 +23,12 @@ def edit_profile(request, cec=None):
     profile_id = Profile.objects.get(user=request.user.id).id
     profile = get_object_or_404(Profile, id=profile_id)
     if request.method == "POST" and request.user.is_authenticated and request.user == profile.user:
-        form = EditProfileForm(request.POST, instance=profile)
+        form = EditProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             return redirect('profile_detail', cec=cec)
+        else:
+            print(form.errors)
     else:
         form = EditProfileForm(instance=profile)
     return render(request, 'edit_profile.html', {'form': form, 'profile': profile})
