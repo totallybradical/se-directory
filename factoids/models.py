@@ -9,6 +9,7 @@ class Factoid(models.Model):
     # Map to a specific profile
     profile =  models.ForeignKey('profiles.Profile', on_delete=models.CASCADE)
     text = models.TextField()
+    is_fun = models.BooleanField()
 
     def add(self):
         self.save()

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Fact{% endblock %}
+
+{% block content %}
+
+{%if request.user.is_authenticated and request.user == factoid_profile.user %}
+
+<h2 align="center">"{{ user_factoid.text }}"</h2><br>
+
+<form method="POST" action="" align="center">
+{% csrf_token %}
+Are you sure you want to delete this fact?
+<br>
+<br>
+<button type="submit"  value="Yes" class="save btn btn-success">Yes</button>
+<a href="{% url 'factoids_list' %}" <span>Cancel</span></a>
+</form>
+{% endif %}
+
+{%if request.user != factoid_profile.user %}
+<h1 align="center">You cannot delete this entry</h1>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}My Facts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 align="center">My Facts</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Fact</th>
+                <th scope="col">Fun Fact?</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user_factoid in user_factoids %}
+            <tr>
+                <td>{{ user_factoid.text }}</td>
+                <td>{{ user_factoid.is_fun }}</td>
+                <td>
+                    <button type="button"  class="btn btn-default" style="background:none">
+                        <a href="/facts/{{ user_factoid.id }}/delete/"><span class="far fa-trash-alt" style="color:#000000;"></span> </a>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container" align="center">
+    <a class="btn btn-success" href="{% url 'add_factoid' %}" role="button">Add</a>
+</div>
+{% endblock %}
