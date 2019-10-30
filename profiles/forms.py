@@ -24,7 +24,7 @@ class ProfileForm(forms.ModelForm):
 
 def thumbnail(image_path, width, height):
     absolute_url = '/' + image_path
-    return '<img src="%s" alt="%s" width="%s" height="%s" class="widget-img" />' % (absolute_url, image_path, width, height)
+    return '<img src="%s" alt="%s" class="img-fluid" />' % (absolute_url, image_path)
 
 
 class ImageWidget(forms.FileInput):
@@ -32,7 +32,7 @@ class ImageWidget(forms.FileInput):
                '<br>' \
                '<div class="custom-file">%(input)s<label class="custom-file-label" for="customFile">Choose image file...</label></div>'
 
-    def __init__(self, attrs=None, template=None, width=189, height=252):
+    def __init__(self, attrs=None, template=None, width=None, height=None):
         if template is not None:
             self.template = template
         self.width = width
