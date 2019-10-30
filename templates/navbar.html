@@ -10,8 +10,18 @@
     <div class="navbar-collapse collapse w-100" id="collapsingNavbar">
         {% if user.is_authenticated %}
             <ul class="navbar-nav w-100 justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile_list' %}">The Team</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        The Team
+                        <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'profile_list' %}">Global</a>
+                        <a class="dropdown-item" href="{% url 'profile_list' geo='USCAN' %}">Americas</a>
+                        <a class="dropdown-item" href="{% url 'profile_list' geo='APJC' %}">APJC</a>
+                        <a class="dropdown-item" href="{% url 'profile_list' geo='EMEAR' %}">EMEAR</a>
+                        <a class="dropdown-item" href="{% url 'profile_list' geo='LATAM' %}">LATAM</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'random_factoid' %}">Fun Fact!</a>

@@ -9,10 +9,15 @@ from profile_tags.models import ProfileTag
 from factoids.models import Factoid
 from django.http import JsonResponse
 
-def profile_list(request):
-    profiles = Profile.objects.exclude(geo="TEMP").exclude(team="TEMP").order_by('name')
+def profile_list(request, geo=None):
     tags = ProfileTag.objects.all()
-    return render(request, 'profile_list.html', {'profiles': profiles, 'tags': tags})
+    if geo:
+        geo_display = dict(Profile.GEOS)[geo]
+        profiles = Profile.objects.exclude(geo="TEMP").exclude(team="TEMP").filter(geo=geo).order_by('name')
+        return render(request, 'profile_list.html', {'geo_display': geo_display, 'profiles': profiles, 'tags': tags})
+    else:
+        profiles = Profile.objects.exclude(geo="TEMP").exclude(team="TEMP").order_by('name')
+        return render(request, 'profile_list.html', {'profiles': profiles, 'tags': tags})
 
 def profile_detail(request, cec=None):
     profile = Profile.objects.get(cec=cec)

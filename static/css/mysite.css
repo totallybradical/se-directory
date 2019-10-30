@@ -3,6 +3,10 @@
     padding-right:10px;
   }
 
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -13,3 +17,4 @@
     text-align: center;
     color:#FFFFFF; 
 }
+

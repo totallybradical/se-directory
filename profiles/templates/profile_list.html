@@ -9,7 +9,7 @@
 <script src="{% static "js/filter.js" %}"></script>
 
 <div class="container">
-    <h1 align="center">The Team</h2>
+    <h1 align="center">The{% if geo_display %} {{ geo_display }}{% endif %} Team</h2>
     {% if profiles %}
     <form class="form-inline justify-content-center">
         <div class="form-group ">
